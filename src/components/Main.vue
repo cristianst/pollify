@@ -1,0 +1,57 @@
+<template>
+  <div class="main-page">
+    <div class="top-line"></div>
+    <div class="content">
+      <div class="inner">
+        <icon name="bar-chart" scale="3"></icon>
+        <h1>{{ title }}</h1>
+        <h3>{{ slug }}</h3>
+        <router-link to="/new">
+          <md-button class="md-raised md-primary">Create Poll</md-button>
+        </router-link>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Main',
+  data() {
+    return {
+      title: 'pollify',
+      slug: 'Real time polling.',
+    };
+  },
+};
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="less" scoped>
+.main-page {
+  height: 100%;
+  .top-line {
+    width: 100%;
+    height: 4px;
+    background-color: #0B4F6C;
+  }
+  .content {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+
+    .inner {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 4vw;
+    }
+    h3 {
+      font-style: italic;
+      color: #424B54
+    }
+  }
+}
+</style>
