@@ -1,13 +1,15 @@
 <template>
   <div class="main-page">
-    <div class="top-line"></div>
     <div class="content">
       <div class="inner">
-        <icon name="bar-chart" scale="3"></icon>
+        <icon
+          name="bar-chart"
+          scale="3"/>
         <h1>{{ title }}</h1>
         <h3>{{ slug }}</h3>
         <router-link to="/new">
-          <md-button class="md-raised md-primary">Create Poll</md-button>
+          <md-button
+            class="md-raised md-primary">Create Poll</md-button>
         </router-link>
       </div>
     </div>
@@ -20,7 +22,7 @@ export default {
   data() {
     return {
       title: 'pollify',
-      slug: 'Real time polling.',
+      slug: '- real time polling -',
     };
   },
 };
@@ -30,11 +32,6 @@ export default {
 <style lang="less" scoped>
 .main-page {
   height: 100%;
-  .top-line {
-    width: 100%;
-    height: 4px;
-    background-color: #0B4F6C;
-  }
   .content {
     display: flex;
     height: 100%;

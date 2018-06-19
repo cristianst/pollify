@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <div class="top-line"/>
     <router-view/>
   </div>
 </template>
@@ -24,5 +25,11 @@ body, html {
   width: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  .top-line {
+    width: 100%;
+    height: 4px;
+    background-color: #0B4F6C;
+  }
 }
 </style>
