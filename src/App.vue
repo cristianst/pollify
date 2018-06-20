@@ -31,5 +31,8 @@ body, html {
     height: 4px;
     background-color: #0B4F6C;
   }
+  .md-list-item-content {
+    padding: 0 !important;
+  }
 }
 </style>
