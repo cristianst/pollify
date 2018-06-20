@@ -25,7 +25,9 @@ body, html {
   width: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  .md-field label {
+    font-size: 13px;
+  }
   .top-line {
     width: 100%;
     height: 4px;

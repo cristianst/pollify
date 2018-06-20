@@ -1,13 +1,16 @@
 <template>
   <div class="create-poll">
-    <h2>New Poll</h2>
-    <div class="">
-      <h4>Question Text</h4>
+    <h1>New Poll</h1>
+    <div class="container">
+      <h3>Question Text</h3>
       <md-field>
         <label>Type your question.</label>
-        <md-textarea class="question-text">sdfsd</md-textarea>
+        <md-textarea
+          v-model="text"
+          class="question-text"
+          md-autogrow>sdfsd</md-textarea>
       </md-field>
-      <h4>Choices</h4>
+      <h3 class="choices-header">Choices</h3>
       <div class="content">
         <md-list class="choices-list md-dense">
           <md-list-item
@@ -18,27 +21,32 @@
               scale="1.5"
               name="angle-right"
               class="angle-icon"/>
-            <!-- <md-radio
-              :value="item.label"
-              v-model="radio"
-              name="rasd"
-              class="choice-radio md-primary"/> -->
             <md-field>
               <label>Answer Label</label>
               <md-input v-model="item.label"/>
             </md-field>
-            <icon
-              scale="1.2"
-              name="trash"
-              class="trash-icon"/>
+            <md-button
+              class="trash-icon md-icon-button md-accent"
+              @click="deleteItem(index)">
+              <md-icon>delete_forever</md-icon>
+            </md-button>
           </md-list-item>
         </md-list>
-        <md-button class="md-icon-button md-raised md-accent">
-          <md-icon>add</md-icon>
-        </md-button>
+        <div class="add-button-container">
+          <md-button
+            @click="addItem"
+            class="md-icon-button md-raised">
+            <md-icon>add</md-icon>
+          </md-button>
+        </div>
       </div>
       <div class="controls">
-        <md-button class="md-raised md-primary">Create</md-button>
+        <!-- <md-button class="md-icon-button md-raised">
+          <md-icon>add</md-icon>
+        </md-button> -->
+        <md-button
+          @click="createPoll"
+          class="md-raised md-primary">Create</md-button>
       </div>
     </div>
   </div>
@@ -54,6 +62,7 @@ export default {
       radio: false,
       title: 'pollify',
       slug: '- real time polling -',
+      text: null,
       items: [{
         label: 'Option One',
         votes: 0,
@@ -66,20 +75,59 @@ export default {
       }],
     };
   },
-  created() {
-    // const polls = db.collection('polls');
+  methods: {
+    deleteItem(index) {
+      const items = this.items;
+      const itemsSize = items.length;
+      if (itemsSize > 2) {
+        items.splice(index, 1);
+      } else {
+        console.log("min 2 options");
+      }
+    },
+    addItem() {
+      const items = this.items;
+      const itemsSize = items.length;
+      if (itemsSize < 4) {
+        this.items.push({
+          label: '',
+          votes: 0,
+        });
+      } else {
+        console.log("max 4");
+      }
+    },
+    createPoll() {
+      const poll = {
+        createdAt: new Date(),
+        text: this.text,
+        options: this.items,
+      };
+
+      db.collection('polls').add(poll).then((doc) => {
+        const pollId = doc.id;
+        
+      }).catch(e => console.log(e));
+    },
   },
 };
 </script>
 <style lang="less" scoped>
     .create-poll {
+        padding-top: 15px;
         display: flex;
         flex-direction: column;
         align-items: center;
         .question-text {
           color: red;
         }
+        .container {
+          min-width: 350px;
 
+          .choices-header {
+            margin-top: 10px;
+          }
+        }
         .content {
           position: relative;
           .choices-list {
@@ -103,9 +151,13 @@ export default {
               }
             }
           }
-          .add-button {
-            &:hover {
-              cursor: pointer;
+          .add-button-container {
+            text-align: center;
+            margin-bottom: 10px;
+            .add-button {
+              &:hover {
+                cursor: pointer;
+              }
             }
           }
         }

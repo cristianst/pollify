@@ -9,7 +9,7 @@
         <h3>{{ slug }}</h3>
         <router-link to="/new">
           <md-button
-            class="md-raised md-primary">Create Poll</md-button>
+            class="md-raised md-primary">Start</md-button>
         </router-link>
       </div>
     </div>
