@@ -1,15 +1,18 @@
 <template>
-  <div v-if="items.length > 0">
+  <div class="poll-container" v-if="items.length > 0">
     {{ text }}
-    <div>
-      <div
-        v-for="(item, index) in items"
-        :key="index">
-        <div>{{ item.label }} has {{ item.votes }} votes </div>
+    <div class="poll-main-content">
+      <div class="poll-choices">
+        <div
+          v-for="(item, index) in items"
+          :key="index">
+          <div>{{ item.label }} has {{ item.votes }} votes </div>
+        </div>
+        <div v-if="totalVotes">
+          total votes: {{ totalVotes }}
+        </div>
       </div>
-      <div v-if="totalVotes">
-        total votes: {{ totalVotes }}
-      </div>
+      
       <PollPieChart
         v-bind:items="items"
       />
@@ -51,5 +54,16 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+.poll-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.poll-main-content {
+  display: flex;
+  > div {
+    flex: 1;
+  }
+}
 </style>
 
