@@ -1,5 +1,5 @@
 // Firebase Config
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 const config = {
@@ -10,11 +10,15 @@ const config = {
   storageBucket: 'pollify-19bc7.appspot.com',
   messagingSenderId: '874384727767',
   persistence: true,
+  timestampsInSnapshots: true,
   enableRedirectHandling: true,
 };
 
 const firebaseApp = firebase.initializeApp(config);
 const firestore = firebaseApp.firestore();
+
+const settings = { ...firestore.settings, timestampsInSnapshots: true };
+firestore.settings(settings);
 
 export default firestore;
 

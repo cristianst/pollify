@@ -82,7 +82,7 @@ export default {
       if (itemsSize > 2) {
         items.splice(index, 1);
       } else {
-        console.log("min 2 options");
+        // min 2 options
       }
     },
     addItem() {
@@ -94,7 +94,7 @@ export default {
           votes: 0,
         });
       } else {
-        console.log("max 4");
+        // max 4
       }
     },
     createPoll() {
@@ -104,10 +104,12 @@ export default {
         options: this.items,
       };
 
-      db.collection('polls').add(poll).then((doc) => {
-        const pollId = doc.id;
-        
-      }).catch(e => console.log(e));
+      db.collection('polls').add(poll).then(() => {
+        // const pollId = doc.id;
+        // redirect to pollId
+      }).catch(() => {
+        // catch e
+      });
     },
   },
 };
