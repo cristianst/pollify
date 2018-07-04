@@ -56,10 +56,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .canvas-holder {
-  width: 40%;
+  //width: 40%;
 }
-.pie-canvas {
-  width: 500px;
-  height: 280px;
-}
+
 </style>
