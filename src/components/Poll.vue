@@ -76,6 +76,7 @@ export default {
         }).then((r) => {
           setTimeout(() => {
             alert("Thanks for voting");
+            this.selectedChoice = null;
           }, 1000);
         }).catch((e) => {
           console.log(e);
