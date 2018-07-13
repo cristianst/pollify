@@ -66,6 +66,7 @@ export default {
     vote() {
       if (this.selectedChoice === null) {
         alert('You need to pick a choise first');
+        console.log(db.auth());
       } else {
         this.items[this.selectedChoice].votes += 1;
         const pollId = this.$route.params.id;
@@ -96,6 +97,7 @@ export default {
   created() {
     const pollId = this.$route.params.id;
     const pollRef = db.collection('polls').doc(pollId);
+
 
     pollRef.onSnapshot((doc) => {
       if (doc.exists) {
