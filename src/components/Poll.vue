@@ -48,6 +48,11 @@
 import PollPieChart from '@/components/PollPieChart';
 import db from '../firebase';
 
+const genericToastConfig = {
+  duration: 2000,
+  position: 'top-right',
+};
+
 export default {
   name: 'Poll',
   components: {
@@ -65,8 +70,9 @@ export default {
   methods: {
     vote() {
       if (this.selectedChoice === null) {
-        alert('You need to pick a choise first');
-        console.log(db.auth());
+        this.$toasted.error('You need to pick a choise first', {
+          ...genericToastConfig,
+        });
       } else {
         this.items[this.selectedChoice].votes += 1;
         const pollId = this.$route.params.id;
@@ -74,11 +80,10 @@ export default {
 
         ref.update({
           options: this.items,
-        }).then((r) => {
-          setTimeout(() => {
-            alert("Thanks for voting");
-            this.selectedChoice = null;
-          }, 1000);
+        }).then(() => {
+          this.$toasted.success('Thanks for voting', {
+            ...genericToastConfig,
+          });
         }).catch((e) => {
           console.log(e);
         });
@@ -97,7 +102,6 @@ export default {
   created() {
     const pollId = this.$route.params.id;
     const pollRef = db.collection('polls').doc(pollId);
-
 
     pollRef.onSnapshot((doc) => {
       if (doc.exists) {

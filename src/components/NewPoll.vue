@@ -104,9 +104,10 @@ export default {
         options: this.items,
       };
 
-      db.collection('polls').add(poll).then(() => {
-        // const pollId = doc.id;
+      db.collection('polls').add(poll).then((doc) => {
+        const pollId = doc.id;
         // redirect to pollId
+        this.$router.push({ path: `/poll/${pollId}` });
       }).catch(() => {
         // catch e
       });

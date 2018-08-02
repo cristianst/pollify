@@ -3,6 +3,7 @@
 import Vue from 'vue';
 import Icon from 'vue-awesome/components/Icon';
 import { MdButton, MdField, MdList, MdRadio, MdIcon } from 'vue-material/dist/components';
+import Toasted from 'vue-toasted';
 import 'vue-material/dist/vue-material.min.css';
 import 'vue-material/dist/theme/default.css';
 import 'vue-awesome/icons';
@@ -15,6 +16,7 @@ Vue.use(MdField);
 Vue.use(MdList);
 Vue.use(MdRadio);
 Vue.use(MdIcon);
+Vue.use(Toasted);
 
 Vue.config.productionTip = false;
 
